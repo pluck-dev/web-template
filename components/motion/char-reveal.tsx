@@ -7,10 +7,15 @@ type CharRevealProps = {
   text: string;
   className?: string;
   delay?: number;
-  /** 각 글자가 들어오는 방향 다양화 */
+  /** 각 글자가 다양한 방향에서 들어오는 효과 */
   scatter?: boolean;
 };
 
+/**
+ * CharReveal — 글자 단위 등장.
+ * scatter=true면 4방향에서 살짝씩 들어오는 부드러운 비산.
+ * 거리/스프링을 완화해 "갑자기"가 아닌 "서서히" 모이는 느낌.
+ */
 export function CharReveal({
   text,
   className,
@@ -29,7 +34,7 @@ export function CharReveal({
         hidden: {},
         show: {
           transition: {
-            staggerChildren: 0.035,
+            staggerChildren: 0.045,
             delayChildren: delay,
           },
         },
@@ -37,12 +42,15 @@ export function CharReveal({
       aria-label={text}
     >
       {chars.map((c, i) => {
-        const dir = scatter ? (i % 4) : 0;
-        const offsets: Record<number, { x: number; y: number; r: number }> = {
-          0: { x: 0, y: 80, r: -8 },
-          1: { x: -80, y: 40, r: 12 },
-          2: { x: 80, y: -40, r: -16 },
-          3: { x: 0, y: -90, r: 6 },
+        const dir = scatter ? i % 4 : 0;
+        const offsets: Record<
+          number,
+          { x: number; y: number; r: number }
+        > = {
+          0: { x: 0, y: 22, r: -2 },
+          1: { x: -16, y: 12, r: 3 },
+          2: { x: 16, y: -10, r: -3 },
+          3: { x: 0, y: -22, r: 2 },
         };
         const off = offsets[dir];
         return (
@@ -56,7 +64,7 @@ export function CharReveal({
                 x: off.x,
                 y: off.y,
                 rotate: off.r,
-                filter: "blur(12px)",
+                filter: "blur(8px)",
               },
               show: {
                 opacity: 1,
@@ -65,15 +73,16 @@ export function CharReveal({
                 rotate: 0,
                 filter: "blur(0px)",
                 transition: {
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 16,
-                  mass: 0.6,
+                  opacity: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                  x: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                  y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                  rotate: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
+                  filter: { duration: 0.9, ease: "easeOut" },
                 },
               },
             }}
           >
-            {c === " " ? " " : c}
+            {c === " " ? " " : c}
           </motion.span>
         );
       })}

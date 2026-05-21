@@ -9,6 +9,9 @@ type WordRevealProps = {
   delay?: number;
 };
 
+/**
+ * WordReveal — 단어 단위로 천천히 페이드/슬라이드 인.
+ */
 export function WordReveal({ text, className, delay = 0 }: WordRevealProps) {
   const words = text.split(" ");
   return (
@@ -16,10 +19,12 @@ export function WordReveal({ text, className, delay = 0 }: WordRevealProps) {
       className={cn("inline-block", className)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.4 }}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.05, delayChildren: delay } },
+        show: {
+          transition: { staggerChildren: 0.09, delayChildren: delay },
+        },
       }}
     >
       {words.map((w, i) => (
@@ -27,17 +32,21 @@ export function WordReveal({ text, className, delay = 0 }: WordRevealProps) {
           key={`${w}-${i}`}
           className="inline-block whitespace-pre"
           variants={{
-            hidden: { opacity: 0, y: "100%", filter: "blur(8px)" },
+            hidden: { opacity: 0, y: "30%", filter: "blur(6px)" },
             show: {
               opacity: 1,
               y: 0,
               filter: "blur(0px)",
-              transition: { duration: 0.55, ease: [0.21, 1.02, 0.73, 1] },
+              transition: {
+                opacity: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                y: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
+                filter: { duration: 0.8, ease: "easeOut" },
+              },
             },
           }}
         >
           {w}
-          {i < words.length - 1 ? " " : ""}
+          {i < words.length - 1 ? " " : ""}
         </motion.span>
       ))}
     </motion.span>

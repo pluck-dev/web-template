@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 /**
- * LineReveal — Elementor 'reveal-text' 시그니처 모션 차용.
- * 텍스트 라인이 마스크에 가려졌다가 아래에서 위로 슬라이드되며 드러남.
- * + 동시에 컬러 sweep이 좌→우로 한 번 지나가서 강조.
+ * LineReveal — 텍스트 라인이 마스크에 가려졌다가
+ * 아래에서 위로 부드럽게 슬라이드되며 드러남.
+ * 시그니처를 유지하면서 등장 속도는 더 느리고 부드럽게.
  */
 type LineRevealProps = {
   children: ReactNode;
@@ -24,15 +24,19 @@ export function LineReveal({
   sweep = true,
 }: LineRevealProps) {
   return (
-    <span className={cn("relative inline-block overflow-hidden align-bottom", className)}>
+    <span
+      className={cn(
+        "relative inline-block overflow-hidden align-bottom",
+        className
+      )}
+    >
       <motion.span
-        initial={{ y: "110%", opacity: 0 }}
+        initial={{ y: "105%", opacity: 0 }}
         whileInView={{ y: "0%", opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.4 }}
         transition={{
-          duration: 0.9,
-          delay,
-          ease: [0.22, 1, 0.36, 1],
+          y: { duration: 1.25, delay, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 1.4, delay, ease: [0.22, 1, 0.36, 1] },
         }}
         className="inline-block"
       >
@@ -43,13 +47,13 @@ export function LineReveal({
           aria-hidden
           initial={{ x: "-100%" }}
           whileInView={{ x: "110%" }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{
-            duration: 0.9,
-            delay: delay + 0.1,
+            duration: 1.4,
+            delay: delay + 0.15,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-fuchsia-400/40 to-transparent mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-fuchsia-400/30 to-transparent mix-blend-overlay"
         />
       )}
     </span>
@@ -57,13 +61,13 @@ export function LineReveal({
 }
 
 /**
- * 멀티라인용 - 여러 줄을 차례로 reveal
+ * 멀티라인 — 여러 줄을 차례로 부드럽게 reveal
  */
 export function MultiLineReveal({
   lines,
   className,
   baseDelay = 0,
-  step = 0.12,
+  step = 0.18,
 }: {
   lines: ReactNode[];
   className?: string;

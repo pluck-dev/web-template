@@ -11,23 +11,28 @@ type RevealProps = {
   once?: boolean;
 };
 
+/**
+ * 부드러운 페이드 등장 — opacity 중심, 살짝의 y 이동,
+ * 길고 자연스러운 ease.
+ */
 export function Reveal({
   children,
   className,
   delay = 0,
-  y = 24,
+  y = 14,
   once = true,
 }: RevealProps) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(10px)" }}
+      initial={{ opacity: 0, y, filter: "blur(6px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once, amount: 0.3 }}
+      viewport={{ once, amount: 0.25 }}
       transition={{
-        duration: 0.7,
+        opacity: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+        y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+        filter: { duration: 0.9, ease: "easeOut" },
         delay,
-        ease: [0.21, 1.02, 0.73, 1],
       }}
     >
       {children}
@@ -45,7 +50,7 @@ type StaggerProps = {
 export function Stagger({
   children,
   className,
-  stagger = 0.08,
+  stagger = 0.12,
   once = true,
 }: StaggerProps) {
   return (
@@ -56,7 +61,7 @@ export function Stagger({
       viewport={{ once, amount: 0.2 }}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: stagger } },
+        show: { transition: { staggerChildren: stagger, delayChildren: 0.05 } },
       }}
     >
       {children}
@@ -67,7 +72,7 @@ export function Stagger({
 export function StaggerItem({
   children,
   className,
-  y = 20,
+  y = 12,
 }: {
   children: ReactNode;
   className?: string;
@@ -77,13 +82,47 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y, filter: "blur(8px)" },
+        hidden: { opacity: 0, y, filter: "blur(6px)" },
         show: {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          transition: { duration: 0.6, ease: [0.21, 1.02, 0.73, 1] },
+          transition: {
+            opacity: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+            y: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
+            filter: { duration: 0.8, ease: "easeOut" },
+          },
         },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/**
+ * 본문/캡션처럼 강한 모션이 어울리지 않는 곳에 쓰는 가장 부드러운 페이드.
+ * y 이동 거의 없음, opacity만 매우 천천히.
+ */
+export function SoftFade({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 6 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 1.4,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       {children}
