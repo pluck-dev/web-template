@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
@@ -34,12 +33,7 @@ export function Cta() {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[1.1fr_1fr]">
         <Reveal>
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 07 — Contact
-          </Badge>
+          <div className="eyebrow mb-5">— 상담 신청</div>
           <h2 className="font-heading text-3xl font-bold leading-[1.0] tracking-tight sm:text-6xl md:text-7xl">
             <CharReveal text="이제 " />
             <GlitchText className="inline-block">움직일</GlitchText>{" "}

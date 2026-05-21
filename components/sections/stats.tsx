@@ -1,7 +1,6 @@
 "use client";
 
 import { TrendingUp, Globe2, Users, Zap } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { Counter } from "@/components/motion/counter";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
@@ -55,12 +54,7 @@ export function Stats() {
 
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-12 flex flex-col items-start gap-4">
-          <Badge
-            variant="outline"
-            className="rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 03 — Results
-          </Badge>
+          <div className="eyebrow">— 검증된 성과</div>
           <h2 className="max-w-3xl font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <CharReveal text="숫자가 먼저 말합니다. " />
             <GlitchText className="inline-block">증명된 결과</GlitchText>{" "}

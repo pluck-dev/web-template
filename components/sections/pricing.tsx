@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Check, Star } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GlitchText } from "@/components/glitch-text";
 import { FlyInCard } from "@/components/motion/fly-in-card";
@@ -67,12 +66,7 @@ export function Pricing() {
     <section id="pricing" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 04 — Pricing
-          </Badge>
+          <div className="eyebrow mb-5">— 요금제</div>
           <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <GlitchText className="inline-block">단순한</GlitchText>{" "}
             <span className="gradient-text">3가지</span>{" "}

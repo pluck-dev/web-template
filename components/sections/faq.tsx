@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Plus } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { Reveal } from "@/components/motion/reveal";
 import { CharReveal } from "@/components/motion/char-reveal";
@@ -43,12 +42,7 @@ export function Faq() {
     <section id="faq" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-5 sm:px-6">
         <Reveal className="mb-12">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 06 — FAQ
-          </Badge>
+          <div className="eyebrow mb-5">— 자주 묻는 질문</div>
           <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight sm:text-5xl">
             <CharReveal text="자주 묻는 " />
             <GlitchText className="inline-block">질문</GlitchText>

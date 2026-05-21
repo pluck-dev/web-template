@@ -1,7 +1,6 @@
 "use client";
 
 import { Quote } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { FlyInCard } from "@/components/motion/fly-in-card";
 import { Reveal } from "@/components/motion/reveal";
@@ -43,12 +42,7 @@ export function Testimonials() {
     <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 05 — Voices
-          </Badge>
+          <div className="eyebrow mb-5">— 고객 후기</div>
           <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <CharReveal text="고객이 " />
             <GlitchText className="inline-block">말합니다</GlitchText>

@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { Reveal } from "@/components/motion/reveal";
 import { CharReveal } from "@/components/motion/char-reveal";
@@ -54,12 +53,7 @@ export function Process() {
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:mb-20">
           <div className="max-w-xl">
-            <Badge
-              variant="outline"
-              className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-            >
-              / 02 — Process
-            </Badge>
+            <div className="eyebrow mb-5">— 일하는 방식</div>
             <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               <span className="block">
                 <LineReveal>0에서 매출까지</LineReveal>

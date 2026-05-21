@@ -10,7 +10,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { LineReveal } from "@/components/motion/line-reveal";
 import { Reveal } from "@/components/motion/reveal";
@@ -85,12 +84,7 @@ export function Showreel() {
     <section id="showreel" className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-6" ref={ref}>
         <Reveal className="mb-10 max-w-2xl">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / Showreel
-          </Badge>
+          <div className="eyebrow mb-5">— 실제 캠페인 영상</div>
           <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <span className="block">
               <LineReveal>실제 캠페인을</LineReveal>

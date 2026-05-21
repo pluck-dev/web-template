@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CharReveal } from "@/components/motion/char-reveal";
 import { LineReveal, MultiLineReveal } from "@/components/motion/line-reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Counter } from "@/components/motion/counter";
@@ -27,20 +26,18 @@ export function Hero() {
       <div aria-hidden className="absolute inset-x-0 top-32 bottom-0 -z-10 bg-grid" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-5 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24">
-        {/* 라이브 배지 */}
+        {/* 라이브 배지 — 한국어 + 더 큰 가독성 */}
         <motion.div
-          initial={{ y: -40, opacity: 0, filter: "blur(8px)" }}
+          initial={{ y: -32, opacity: 0, filter: "blur(8px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.7, ease: [0.21, 1.02, 0.73, 1] }}
-          className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] font-medium text-muted-foreground sm:text-xs"
+          className="inline-flex items-center gap-2.5 rounded-full glass px-4 py-2 text-sm font-medium text-foreground/90 sm:text-[15px]"
         >
           <span className="relative inline-flex h-2 w-2">
             <span className="absolute inset-0 animate-ping rounded-full bg-fuchsia-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-fuchsia-400" />
           </span>
-          <span className="font-mono uppercase tracking-[0.18em] sm:tracking-[0.22em]">
-            Live · 12 Countries · 13,850 Creators
-          </span>
+          지금 12개국 · 크리에이터 13,850명 활동 중
         </motion.div>
 
         {/* 거대 타이틀 — Elementor reveal-text 스타일 */}
@@ -139,33 +136,6 @@ export function Hero() {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.4, duration: 0.6 }}
-          className="mt-7 inline-flex items-center gap-2 sm:mt-9"
-        >
-          <Sparkles className="size-3.5 text-fuchsia-400" />
-          <span className="shimmer-text label-mono">
-            평균 셋업 24시간 · 첫 캠페인 7일 내 런칭
-          </span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.6 }}
-          className="mt-10 hidden sm:block"
-        >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex h-9 w-6 items-start justify-center rounded-full border border-white/15 pt-1.5"
-          >
-            <span className="h-1.5 w-1 rounded-full bg-fuchsia-400" />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

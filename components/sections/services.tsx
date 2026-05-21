@@ -77,12 +77,7 @@ export function Services() {
     <section id="services" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-          >
-            / 01 — Services
-          </Badge>
+          <div className="eyebrow mb-5">— 서비스</div>
           <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <CharReveal text="한 곳에서 굴리는 " />
             <GlitchText className="inline-block">6가지</GlitchText>{" "}
