@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Sparkles, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CharReveal } from "@/components/motion/char-reveal";
+import { LineReveal, MultiLineReveal } from "@/components/motion/line-reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Counter } from "@/components/motion/counter";
 import { FloatingOrbs } from "@/components/motion/floating-orbs";
@@ -22,13 +23,11 @@ export function Hero() {
       id="top"
       className="relative isolate overflow-hidden noise"
     >
-      {/* 떠다니는 오로라 블롭 */}
       <FloatingOrbs />
-      {/* 그리드 라인 */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-5 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24">
-        {/* 라이브 배지 — slide-down */}
+        {/* 라이브 배지 */}
         <motion.div
           initial={{ y: -40, opacity: 0, filter: "blur(8px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
@@ -44,45 +43,49 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* 거대 타이틀 — 캐릭터 단위 비산 */}
+        {/* 거대 타이틀 — Elementor reveal-text 스타일 */}
         <h1 className="mt-6 text-balance font-heading text-[2.6rem] font-bold leading-[1.05] tracking-tight sm:mt-8 sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          <span className="block">
-            <CharReveal text="글로벌 인플루언서를" />
-          </span>
-          <span className="mt-2 block">
-            <CharReveal
-              text="REWIRE"
-              delay={0.2}
-              className="glitch gradient-text"
-            />
-            <span className="ml-2 inline-block sm:ml-3">
-              <CharReveal text="합니다." delay={0.35} />
-            </span>
-          </span>
+          <MultiLineReveal
+            lines={[
+              <span key="l1">글로벌 인플루언서를</span>,
+              <span key="l2">
+                <span data-text="REWIRE" className="glitch gradient-text mr-2 sm:mr-3">
+                  REWIRE
+                </span>
+                <span>합니다.</span>
+              </span>,
+            ]}
+            step={0.14}
+          />
         </h1>
 
-        {/* 서브 카피 */}
-        <motion.p
+        {/* 서브 카피 - 시적 줄바꿈 (pd6 영향) */}
+        <motion.div
           initial={{ y: 30, opacity: 0, filter: "blur(8px)" }}
           whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.7 }}
           className="mt-6 max-w-2xl text-pretty text-[15px] text-muted-foreground sm:mt-7 sm:text-lg"
         >
-          일본 · 태국 · 싱가포르 · 미국 · 중국까지.
-          <span className="text-foreground">
-            {" "}
-            13,850명의 진짜 크리에이터
+          <span className="block">
+            <LineReveal delay={0.7} sweep={false}>
+              일본 · 태국 · 싱가포르 · 미국 · 중국까지.
+            </LineReveal>
           </span>
-          가 당신의 브랜드를 시장에 꽂아드립니다. 단 6단계.
-        </motion.p>
+          <span className="block">
+            <LineReveal delay={0.85} sweep={false}>
+              <span className="text-foreground">13,850명의 진짜 크리에이터</span>
+              가 브랜드를 시장에 꽂아드립니다.
+            </LineReveal>
+          </span>
+        </motion.div>
 
-        {/* CTA — 자석 효과 */}
+        {/* CTA */}
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.85, duration: 0.7 }}
+          transition={{ delay: 1.0, duration: 0.7 }}
           className="mt-8 flex w-full max-w-md flex-col items-stretch gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center"
         >
           <Magnetic strength={0.3} className="w-full sm:w-auto">
@@ -112,12 +115,12 @@ export function Hero() {
           </Magnetic>
         </motion.div>
 
-        {/* 메트릭 — 카운트업 */}
+        {/* 메트릭 */}
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 1.0, duration: 0.8 }}
+          transition={{ delay: 1.1, duration: 0.8 }}
           className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl glass sm:mt-16 sm:grid-cols-4"
         >
           {METRICS.map((m) => (
@@ -148,7 +151,6 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* 스크롤 인디케이터 — 본문 흐름 안에 자연스럽게 */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

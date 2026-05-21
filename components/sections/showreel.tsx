@@ -2,12 +2,19 @@
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Play, Pause, MonitorPlay, Hash } from "lucide-react";
+import {
+  Play,
+  Pause,
+  MonitorPlay,
+  Hash,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
 import { CharReveal } from "@/components/motion/char-reveal";
+import { LineReveal } from "@/components/motion/line-reveal";
 import { Reveal } from "@/components/motion/reveal";
-import { FlyInCard } from "@/components/motion/fly-in-card";
 import { Magnetic } from "@/components/motion/magnetic";
 import { cn } from "@/lib/utils";
 
@@ -40,10 +47,25 @@ const CLIPS = [
     plays: "640K",
     grad: "from-orange-400/80 via-rose-500/70 to-fuchsia-500/70",
   },
+  {
+    title: "싱가포르 라이프",
+    handle: "@sgp.daily",
+    tags: "쇼츠 · 싱가포르",
+    plays: "1.1M",
+    grad: "from-emerald-400/80 via-cyan-400/70 to-fuchsia-500/70",
+  },
+  {
+    title: "상하이 푸드",
+    handle: "@shang.eats",
+    tags: "틱톡 · 중국",
+    plays: "2.5M",
+    grad: "from-violet-500/80 via-rose-500/70 to-orange-400/70",
+  },
 ];
 
 export function Showreel() {
   const ref = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -53,9 +75,15 @@ export function Showreel() {
 
   const [playing, setPlaying] = useState(false);
 
+  const scrollRail = (dir: 1 | -1) => {
+    const el = railRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
+  };
+
   return (
     <section id="showreel" className="relative overflow-hidden py-24 sm:py-32">
-      <div ref={ref} className="mx-auto max-w-6xl px-5 sm:px-6">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6" ref={ref}>
         <Reveal className="mb-10 max-w-2xl">
           <Badge
             variant="outline"
@@ -64,10 +92,16 @@ export function Showreel() {
             / Showreel
           </Badge>
           <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            <CharReveal text="실제 캠페인을 " />
-            <GlitchText className="inline-block">재생</GlitchText>
-            <span className="ml-2 inline-block gradient-text">
-              <CharReveal text="해보세요." delay={0.2} />
+            <span className="block">
+              <LineReveal>실제 캠페인을</LineReveal>
+            </span>
+            <span className="block">
+              <LineReveal delay={0.15} sweep>
+                <GlitchText className="inline-block">재생</GlitchText>
+                <span className="ml-2 inline-block gradient-text">
+                  해보세요.
+                </span>
+              </LineReveal>
             </span>
           </h2>
           <p className="mt-4 text-[15px] text-muted-foreground sm:text-base">
@@ -75,12 +109,11 @@ export function Showreel() {
           </p>
         </Reveal>
 
-        {/* 메인 영상 자리 — 16:9 패럴랙스 */}
+        {/* 메인 영상 — 16:9 + 패럴랙스 */}
         <motion.div
           style={{ y: heroY, scale: heroScale }}
           className="glow-border relative isolate aspect-video w-full overflow-hidden rounded-3xl"
         >
-          {/* 비디오 자리: 실제 src 들어오면 video 태그로 교체 */}
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay={playing}
@@ -90,11 +123,10 @@ export function Showreel() {
             poster=""
             preload="metadata"
           >
-            {/* TODO: 실제 영상 URL 연결 — public/showreel.mp4 또는 CDN */}
+            {/* TODO: 실제 영상 URL — public/showreel.mp4 또는 CDN */}
             {/* <source src="/showreel.mp4" type="video/mp4" /> */}
           </video>
 
-          {/* 비디오 없을 때를 위한 그라데이션 폴백 */}
           <div
             aria-hidden
             className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/40 via-violet-500/30 to-cyan-400/40"
@@ -109,7 +141,6 @@ export function Showreel() {
           />
           <div aria-hidden className="absolute inset-0 noise" />
 
-          {/* 좌상단 라이브 라벨 */}
           <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-foreground sm:left-6 sm:top-6">
             <span className="relative inline-flex h-1.5 w-1.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-fuchsia-400 opacity-80" />
@@ -118,7 +149,6 @@ export function Showreel() {
             REC · LIVE CASE STUDY
           </div>
 
-          {/* 우상단 통계 */}
           <div className="absolute right-4 top-4 grid grid-cols-3 gap-3 sm:right-6 sm:top-6 sm:gap-5">
             {[
               { l: "총 도달", v: "8.7M" },
@@ -136,7 +166,6 @@ export function Showreel() {
             ))}
           </div>
 
-          {/* 중앙 재생 버튼 */}
           <div className="absolute inset-0 flex items-center justify-center">
             <Magnetic strength={0.18}>
               <button
@@ -157,7 +186,6 @@ export function Showreel() {
             </Magnetic>
           </div>
 
-          {/* 좌하단 타이틀 */}
           <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-1 sm:bottom-6 sm:left-6 sm:right-6">
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 sm:text-[11px]">
               Case · 2026 Q1 · Beauty · 도쿄
@@ -168,13 +196,49 @@ export function Showreel() {
           </div>
         </motion.div>
 
-        {/* 컨텐츠 그리드 — 9:16 세로 영상 4개 */}
-        <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
-          {CLIPS.map((c, i) => (
-            <FlyInCard key={c.title} index={i} from="scatter">
-              <article
+        {/* 클립 캐러셀 (Swiper-like) */}
+        <div className="mt-10 sm:mt-14">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-muted-foreground">
+              // 6개 라이브 클립 · 드래그 가능
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollRail(-1)}
+                aria-label="이전"
+                className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-foreground transition hover:bg-white/[0.1]"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollRail(1)}
+                aria-label="다음"
+                className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-foreground transition hover:bg-white/[0.1]"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={railRef}
+            className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 [&::-webkit-scrollbar]:hidden"
+          >
+            {CLIPS.map((c, i) => (
+              <motion.article
+                key={c.title}
+                initial={{ opacity: 0, x: 80, rotate: 4 }}
+                whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  delay: i * 0.06,
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className={cn(
-                  "group glow-border relative isolate aspect-[9/16] overflow-hidden rounded-3xl"
+                  "group glow-border relative isolate aspect-[9/16] w-[68vw] shrink-0 snap-start overflow-hidden rounded-3xl sm:w-[280px]"
                 )}
               >
                 <div
@@ -190,7 +254,6 @@ export function Showreel() {
                 />
                 <div aria-hidden className="absolute inset-0 noise" />
 
-                {/* 호버 시 영상 자리 — video 태그 활성화 */}
                 <video
                   className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   muted
@@ -198,9 +261,7 @@ export function Showreel() {
                   playsInline
                   preload="none"
                   poster=""
-                >
-                  {/* TODO: 실제 클립 src */}
-                </video>
+                />
 
                 <div className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full glass px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-foreground">
                   <MonitorPlay className="size-3" />
@@ -221,16 +282,15 @@ export function Showreel() {
                   </div>
                 </div>
 
-                {/* 호버 시 슬라이드인 재생 버튼 */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                   <span className="relative inline-flex size-14 items-center justify-center rounded-full bg-background/40 backdrop-blur-md">
                     <span className="absolute inset-0 rounded-full border border-white/30" />
                     <Play className="ml-0.5 size-5 fill-current text-foreground" />
                   </span>
                 </div>
-              </article>
-            </FlyInCard>
-          ))}
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
