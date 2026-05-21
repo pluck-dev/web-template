@@ -74,8 +74,8 @@ const SERVICES = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="services" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
           <Badge
             variant="outline"
@@ -83,14 +83,14 @@ export function Services() {
           >
             / 01 — Services
           </Badge>
-          <h2 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <CharReveal text="한 곳에서 굴리는 " />
             <GlitchText className="inline-block">6가지</GlitchText>{" "}
             <span className="gradient-text">
               <CharReveal text="실전 채널" delay={0.2} />
             </span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mt-4 text-[15px] text-muted-foreground sm:text-base">
             예산 · 시장 · 목적에 따라 채널을 조립합니다. 결국 매출이 나오는
             방식으로.
           </p>

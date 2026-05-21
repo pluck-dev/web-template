@@ -17,7 +17,7 @@ export function Cta() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="relative overflow-hidden py-32">
+    <section id="contact" className="relative overflow-hidden py-24 sm:py-32">
       {/* 거대 백그라운드 텍스트 */}
       <motion.div
         aria-hidden
@@ -32,7 +32,7 @@ export function Cta() {
         </span>
       </motion.div>
 
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[1.1fr_1fr]">
         <Reveal>
           <Badge
             variant="outline"
@@ -40,7 +40,7 @@ export function Cta() {
           >
             / 07 — Contact
           </Badge>
-          <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+          <h2 className="font-heading text-3xl font-bold leading-[1.0] tracking-tight sm:text-6xl md:text-7xl">
             <CharReveal text="이제 " />
             <GlitchText className="inline-block">움직일</GlitchText>{" "}
             <span className="gradient-text">

@@ -64,8 +64,8 @@ const PLANS = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="pricing" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
           <Badge
             variant="outline"
@@ -73,7 +73,7 @@ export function Pricing() {
           >
             / 04 — Pricing
           </Badge>
-          <h2 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <GlitchText className="inline-block">단순한</GlitchText>{" "}
             <span className="gradient-text">3가지</span>{" "}
             <CharReveal text="플랜" delay={0.15} />

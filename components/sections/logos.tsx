@@ -19,9 +19,9 @@ const BRANDS = [
 
 export function Logos() {
   return (
-    <section className="border-y border-white/[0.06] bg-background/40 py-10 backdrop-blur">
-      <div className="mx-auto mb-6 max-w-6xl px-6">
-        <p className="text-center font-mono text-[11px] uppercase tracking-[0.32em] text-muted-foreground">
+    <section className="border-y border-white/[0.06] bg-background/40 py-10 backdrop-blur sm:py-12">
+      <div className="mx-auto mb-6 max-w-6xl px-5 sm:px-6">
+        <p className="text-center font-mono text-[12px] uppercase tracking-[0.28em] text-muted-foreground sm:text-[13px] sm:tracking-[0.32em]">
           // Trusted by ambitious brands
         </p>
       </div>

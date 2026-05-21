@@ -51,8 +51,8 @@ export function Process() {
   const trackHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="process" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="process" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">
             <Badge
@@ -61,7 +61,7 @@ export function Process() {
             >
               / 02 — Process
             </Badge>
-            <h2 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               <CharReveal text="0에서 매출까지 " />
               <GlitchText className="inline-block">6 STEPS</GlitchText>
             </h2>

@@ -40,8 +40,8 @@ const QUOTES = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="relative overflow-hidden py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal className="mb-14 max-w-2xl">
           <Badge
             variant="outline"
@@ -49,7 +49,7 @@ export function Testimonials() {
           >
             / 05 — Voices
           </Badge>
-          <h2 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="font-heading text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             <CharReveal text="고객이 " />
             <GlitchText className="inline-block">말합니다</GlitchText>
           </h2>

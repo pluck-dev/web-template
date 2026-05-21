@@ -28,7 +28,7 @@ export function Marquee({ items, className, reverse, slow }: MarqueeProps) {
         {duplicated.map((text, i) => (
           <span
             key={`${text}-${i}`}
-            className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground/70"
+            className="font-heading text-2xl font-bold uppercase tracking-[0.12em] text-muted-foreground/80 sm:text-3xl"
           >
             {text}
           </span>

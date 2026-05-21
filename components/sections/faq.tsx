@@ -40,8 +40,8 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="relative py-32">
-      <div className="mx-auto max-w-4xl px-6">
+    <section id="faq" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-4xl px-5 sm:px-6">
         <Reveal className="mb-12">
           <Badge
             variant="outline"
@@ -49,7 +49,7 @@ export function Faq() {
           >
             / 06 — FAQ
           </Badge>
-          <h2 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight sm:text-5xl">
             <CharReveal text="자주 묻는 " />
             <GlitchText className="inline-block">질문</GlitchText>
           </h2>
