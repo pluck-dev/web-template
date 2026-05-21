@@ -117,9 +117,16 @@
       radial-gradient(50rem 50rem at 100% 10%, oklch(0.85 0.18 200 / 0.14), transparent 55%),
       radial-gradient(40rem 40rem at 50% 110%, oklch(0.78 0.24 340 / 0.14), transparent 60%);
   }
+  /* 마우스 드래그 선택 시 — 진한 박스 대신 은은한 글로우 톤 */
   ::selection {
-    background: oklch(0.78 0.22 305 / 0.35);
+    background: oklch(0.78 0.22 305 / 0.18);
     color: oklch(0.99 0.005 280);
+    text-shadow: 0 0 14px oklch(0.78 0.22 305 / 0.55);
+  }
+  ::-moz-selection {
+    background: oklch(0.78 0.22 305 / 0.18);
+    color: oklch(0.99 0.005 280);
+    text-shadow: 0 0 14px oklch(0.78 0.22 305 / 0.55);
   }
 }
 
