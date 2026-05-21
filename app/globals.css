@@ -1,26 +1,276 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-magenta: var(--neon-magenta);
+  --color-neon-lime: var(--neon-lime);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-glitch-1: glitch1 2.4s steps(2, end) infinite;
+  --animate-glitch-2: glitch2 3.1s steps(2, end) infinite;
+  --animate-aurora: aurora 16s linear infinite;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.6s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 다크 모드를 기본값으로 강제 */
+:root,
+.dark {
+  --background: oklch(0.09 0.012 280);
+  --foreground: oklch(0.98 0.002 280);
+  --card: oklch(0.13 0.015 280);
+  --card-foreground: oklch(0.98 0.002 280);
+  --popover: oklch(0.13 0.015 280);
+  --popover-foreground: oklch(0.98 0.002 280);
+  --primary: oklch(0.78 0.22 305);
+  --primary-foreground: oklch(0.09 0.012 280);
+  --secondary: oklch(0.2 0.022 280);
+  --secondary-foreground: oklch(0.98 0.002 280);
+  --muted: oklch(0.18 0.018 280);
+  --muted-foreground: oklch(0.7 0.02 280);
+  --accent: oklch(0.25 0.06 280);
+  --accent-foreground: oklch(0.98 0.002 280);
+  --destructive: oklch(0.7 0.22 18);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 11%);
+  --ring: oklch(0.78 0.22 305);
+  --chart-1: oklch(0.78 0.22 305);
+  --chart-2: oklch(0.82 0.18 200);
+  --chart-3: oklch(0.78 0.24 340);
+  --chart-4: oklch(0.85 0.2 130);
+  --chart-5: oklch(0.8 0.2 60);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.13 0.015 280);
+  --sidebar-foreground: oklch(0.98 0.002 280);
+  --sidebar-primary: oklch(0.78 0.22 305);
+  --sidebar-primary-foreground: oklch(0.09 0.012 280);
+  --sidebar-accent: oklch(0.2 0.022 280);
+  --sidebar-accent-foreground: oklch(0.98 0.002 280);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.78 0.22 305);
+
+  /* 네온 액센트 컬러 */
+  --neon-purple: oklch(0.78 0.22 305);
+  --neon-cyan: oklch(0.85 0.18 200);
+  --neon-magenta: oklch(0.78 0.24 340);
+  --neon-lime: oklch(0.9 0.22 130);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(60rem 60rem at 12% -10%, oklch(0.78 0.22 305 / 0.18), transparent 60%),
+      radial-gradient(50rem 50rem at 100% 10%, oklch(0.85 0.18 200 / 0.14), transparent 55%),
+      radial-gradient(40rem 40rem at 50% 110%, oklch(0.78 0.24 340 / 0.14), transparent 60%);
+  }
+  ::selection {
+    background: oklch(0.78 0.22 305 / 0.35);
+    color: oklch(0.99 0.005 280);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* === 글리치 텍스트 === */
+.glitch {
+  position: relative;
+  display: inline-block;
+  color: oklch(0.99 0.005 280);
+  text-shadow: 0 0 30px oklch(0.78 0.22 305 / 0.45);
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 oklch(0.78 0.24 340);
+  animation: var(--animate-glitch-1);
+  clip-path: inset(0 0 70% 0);
+}
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 oklch(0.85 0.18 200);
+  animation: var(--animate-glitch-2);
+  clip-path: inset(70% 0 0 0);
+}
+
+@keyframes glitch1 {
+  0% { clip-path: inset(10% 0 80% 0); transform: translate(0); }
+  20% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 1px); }
+  40% { clip-path: inset(70% 0 18% 0); transform: translate(1px, -1px); }
+  60% { clip-path: inset(20% 0 60% 0); transform: translate(-1px, 2px); }
+  80% { clip-path: inset(55% 0 30% 0); transform: translate(2px, 0); }
+  100% { clip-path: inset(10% 0 80% 0); transform: translate(0); }
+}
+@keyframes glitch2 {
+  0% { clip-path: inset(60% 0 25% 0); transform: translate(0); }
+  20% { clip-path: inset(35% 0 55% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(80% 0 8% 0); transform: translate(-1px, 1px); }
+  60% { clip-path: inset(15% 0 70% 0); transform: translate(1px, -2px); }
+  80% { clip-path: inset(45% 0 40% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(60% 0 25% 0); transform: translate(0); }
+}
+
+/* === 글로우 그라데이션 텍스트 === */
+.gradient-text {
+  background: linear-gradient(
+    100deg,
+    oklch(0.85 0.18 200) 0%,
+    oklch(0.78 0.22 305) 45%,
+    oklch(0.78 0.24 340) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* === 노이즈 오버레이 === */
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 160px;
+}
+
+/* === 마퀴 (로고/문구 흐름) === */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* === 오로라 배경 === */
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  50% { transform: translate(-4%, 3%) rotate(8deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === 그리드 라인 배경 === */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 85%);
+}
+
+/* === 글래스모피즘 === */
+.glass {
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.015));
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+
+/* === 카드 글로우 보더 === */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    oklch(0.78 0.22 305 / 0.6),
+    oklch(0.85 0.18 200 / 0.4),
+    oklch(0.78 0.24 340 / 0.6)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* === 쉬머 텍스트 === */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    oklch(0.7 0.02 280) 0%,
+    oklch(0.99 0.005 280) 50%,
+    oklch(0.7 0.02 280) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
 }

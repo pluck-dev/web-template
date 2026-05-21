@@ -1,0 +1,104 @@
+"use client";
+
+import { TrendingUp, Globe2, Users, Zap } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { GlitchText } from "@/components/glitch-text";
+import { Counter } from "@/components/motion/counter";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { CharReveal } from "@/components/motion/char-reveal";
+import { Parallax } from "@/components/motion/parallax";
+
+const STATS = [
+  {
+    icon: Users,
+    to: 13850,
+    suffix: "+",
+    l: "글로벌 크리에이터",
+    sub: "마이크로~미드티어 큐레이티드",
+  },
+  {
+    icon: Globe2,
+    to: 12,
+    suffix: "",
+    l: "국가 커버리지",
+    sub: "JP · TH · SG · US · CN · VN 등",
+  },
+  {
+    icon: TrendingUp,
+    to: 4.8,
+    suffix: "x",
+    decimals: 1,
+    l: "평균 ROAS",
+    sub: "최근 6개월 캠페인 평균",
+  },
+  {
+    icon: Zap,
+    to: 24,
+    suffix: "h",
+    l: "셋업 시간",
+    sub: "온보딩 → 첫 큐레이션까지",
+  },
+];
+
+export function Stats() {
+  return (
+    <section id="stats" className="relative overflow-hidden py-32">
+      {/* 좌측 거대 패럴랙스 텍스트 */}
+      <Parallax speed={-120} className="pointer-events-none absolute -left-12 top-6 -z-10 select-none">
+        <span className="font-heading text-[18rem] font-black leading-none tracking-tight text-white/[0.025]">
+          ROI
+        </span>
+      </Parallax>
+
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal className="mb-12 flex flex-col items-start gap-4">
+          <Badge
+            variant="outline"
+            className="rounded-full border-white/15 bg-white/[0.03] font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
+          >
+            / 03 — Results
+          </Badge>
+          <h2 className="max-w-3xl font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+            <CharReveal text="숫자가 먼저 말합니다. " />
+            <GlitchText className="inline-block">증명된 결과</GlitchText>{" "}
+            <span className="gradient-text">
+              <CharReveal text="만 보여드릴게요." delay={0.2} />
+            </span>
+          </h2>
+        </Reveal>
+
+        <Stagger
+          stagger={0.12}
+          className="grid gap-px overflow-hidden rounded-3xl glass sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {STATS.map((s) => {
+            const Icon = s.icon;
+            return (
+              <StaggerItem
+                key={s.l}
+                y={40}
+                className="group relative bg-background/40 p-7 transition-colors hover:bg-white/[0.04]"
+              >
+                <div className="inline-flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-cyan-300 shadow-[inset_0_0_20px_oklch(0.85_0.18_200_/_0.15)] transition-transform group-hover:rotate-6 group-hover:scale-110">
+                  <Icon className="size-5" />
+                </div>
+                <Counter
+                  to={s.to}
+                  suffix={s.suffix}
+                  decimals={s.decimals ?? 0}
+                  className="mt-6 block font-heading text-4xl font-bold tracking-tight gradient-text sm:text-5xl"
+                />
+                <div className="mt-2 text-sm font-medium text-foreground">
+                  {s.l}
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  {s.sub}
+                </div>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
