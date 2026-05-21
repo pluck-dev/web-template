@@ -1,9 +1,9 @@
+/* 한국어 본문용 — Pretendard Variable (반드시 다른 @import 보다 위) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-
-/* 한국어 본문용 — Pretendard Variable */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 
 @custom-variant dark (&:is(.dark *));
 
