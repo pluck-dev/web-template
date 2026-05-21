@@ -77,10 +77,12 @@ export function Faq() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-medium text-foreground">{f.q}</span>
+                  <span className="text-[15.5px] font-semibold text-foreground sm:text-base">
+                    {f.q}
+                  </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -103,7 +105,7 @@ export function Faq() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.21, 1.02, 0.73, 1] }}
                     >
-                      <div className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
+                      <div className="body-copy px-5 pb-5 text-[14.5px]">
                         {f.a}
                       </div>
                     </motion.div>

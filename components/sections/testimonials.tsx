@@ -53,7 +53,7 @@ export function Testimonials() {
             <CharReveal text="고객이 " />
             <GlitchText className="inline-block">말합니다</GlitchText>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="lead-copy mt-5">
             우리가 떠드는 것보다 진짜 결과를 본 사람들의 이야기가 빠릅니다.
           </p>
         </Reveal>
@@ -67,14 +67,16 @@ export function Testimonials() {
                   className={`pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-gradient-to-br ${q.accent} blur-2xl transition-transform group-hover:scale-125`}
                 />
                 <Quote className="size-7 text-fuchsia-300" />
-                <p className="mt-5 text-pretty text-lg leading-relaxed text-foreground">
+                <p className="mt-5 text-pretty text-[17px] leading-[1.7] text-foreground sm:text-lg">
                   &ldquo;{q.quote}&rdquo;
                 </p>
-                <div className="mt-6 flex items-center gap-3">
+                <div className="mt-7 flex items-center gap-3">
                   <div className="size-10 rounded-full bg-gradient-to-br from-fuchsia-400 via-violet-500 to-cyan-400 shadow-[0_0_18px_oklch(0.78_0.22_305_/_0.45)]" />
                   <div>
-                    <div className="font-medium">{q.name}</div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-[15px] font-semibold text-foreground">
+                      {q.name}
+                    </div>
+                    <div className="mt-0.5 text-[12.5px] text-muted-foreground">
                       {q.role}
                     </div>
                   </div>

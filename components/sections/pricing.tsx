@@ -78,7 +78,7 @@ export function Pricing() {
             <span className="gradient-text">3가지</span>{" "}
             <CharReveal text="플랜" delay={0.15} />
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="lead-copy mt-5">
             숨겨진 비용 없음. 성과 안 나오면 그만하셔도 됩니다.
           </p>
         </Reveal>
@@ -119,15 +119,15 @@ export function Pricing() {
                     {p.price}
                   </span>
                 </div>
-                <div className="mt-1 text-xs text-muted-foreground">
+                <div className="mt-1.5 text-[13px] text-muted-foreground">
                   {p.sub}
                 </div>
 
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                <p className="body-copy mt-5 text-[14.5px]">
                   {p.desc}
                 </p>
 
-                <ul className="mt-6 flex-1 space-y-3 text-sm">
+                <ul className="mt-6 flex-1 space-y-3 text-[14.5px]">
                   {p.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5">
                       <span
@@ -140,7 +140,7 @@ export function Pricing() {
                       >
                         <Check className="size-3" />
                       </span>
-                      <span className="text-foreground/90">{f}</span>
+                      <span className="text-foreground-soft">{f}</span>
                     </li>
                   ))}
                 </ul>

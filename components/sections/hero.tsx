@@ -65,7 +65,7 @@ export function Hero() {
           whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.7 }}
-          className="mt-6 max-w-2xl text-pretty text-[15px] text-muted-foreground sm:mt-7 sm:text-lg"
+          className="lead-copy mt-7 max-w-2xl text-pretty sm:mt-8"
         >
           <span className="block">
             <LineReveal delay={0.7} sweep={false}>
@@ -143,10 +143,10 @@ export function Hero() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 1.4, duration: 0.6 }}
-          className="mt-6 inline-flex items-center gap-2 text-xs text-muted-foreground sm:mt-8"
+          className="mt-7 inline-flex items-center gap-2 sm:mt-9"
         >
           <Sparkles className="size-3.5 text-fuchsia-400" />
-          <span className="shimmer-text font-medium text-[12px] sm:text-xs">
+          <span className="shimmer-text label-mono">
             평균 셋업 24시간 · 첫 캠페인 7일 내 런칭
           </span>
         </motion.div>

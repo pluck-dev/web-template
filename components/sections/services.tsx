@@ -90,7 +90,7 @@ export function Services() {
               <CharReveal text="실전 채널" delay={0.2} />
             </span>
           </h2>
-          <p className="mt-4 text-[15px] text-muted-foreground sm:text-base">
+          <p className="lead-copy mt-5 max-w-xl">
             예산 · 시장 · 목적에 따라 채널을 조립합니다. 결국 매출이 나오는
             방식으로.
           </p>
@@ -124,10 +124,10 @@ export function Services() {
                     </Badge>
                   </div>
 
-                  <h3 className="mt-2 font-heading text-2xl font-semibold tracking-tight">
+                  <h3 className="mt-2 font-heading text-2xl font-bold tracking-tight text-foreground">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className="body-copy mt-2.5 text-[14.5px]">
                     {s.desc}
                   </p>
 

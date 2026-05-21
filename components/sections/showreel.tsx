@@ -104,7 +104,7 @@ export function Showreel() {
               </LineReveal>
             </span>
           </h2>
-          <p className="mt-4 text-[15px] text-muted-foreground sm:text-base">
+          <p className="lead-copy mt-5">
             아래는 최근 90일간 실제 송출된 컨텐츠의 하이라이트 일부입니다.
           </p>
         </Reveal>

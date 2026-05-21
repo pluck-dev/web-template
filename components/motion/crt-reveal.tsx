@@ -7,18 +7,16 @@ import { cn } from "@/lib/utils";
 type CRTRevealProps = {
   children: ReactNode;
   className?: string;
-  /** scanlines 오버레이 표시 */
   scanlines?: boolean;
-  /** 켜진 후에도 미세 깜빡임/지터 유지 */
   flicker?: boolean;
 };
 
 /**
- * 브라운관 TV 켜짐 모션
- *  1) 화면 가운데 얇은 점이 빛남
- *  2) 좌우로 가로선 한 줄 펼침
- *  3) 세로로 펼쳐지며 화면 등장
- *  4) 밝기 안정화 + scanlines/jitter
+ * 컨테이너에 브라운관 켜짐 효과를 입힌다.
+ *  - 외곽 div는 aspect/rounded/overflow 등 사용처 className을 받음
+ *  - 내부 motion.div가 absolute inset-0으로 컨텐츠를 풀로 채워서
+ *    자식(absolute video, 그라데이션 오버레이 등)이 정상 위치하도록 함.
+ *  - scale 키프레임으로 점→가로선→풀화면 시퀀스.
  */
 export function CRTReveal({
   children,
@@ -30,33 +28,49 @@ export function CRTReveal({
     <div className={cn("relative isolate", className)}>
       <motion.div
         initial={{
-          scaleY: 0.004,
-          scaleX: 0.35,
+          scaleY: 0.005,
+          scaleX: 0.4,
           opacity: 0,
-          filter: "brightness(2.4) saturate(0.6)",
         }}
         whileInView={{
-          scaleY: [0.004, 0.004, 1, 1, 1],
-          scaleX: [0.35, 1, 1, 1, 1],
+          scaleY: [0.005, 0.005, 1, 1, 1],
+          scaleX: [0.4, 1, 1, 1, 1],
           opacity: [0, 1, 1, 1, 1],
-          filter: [
-            "brightness(2.4) saturate(0.6)",
-            "brightness(2.4) saturate(0.6)",
-            "brightness(1.6) saturate(0.85)",
-            "brightness(1.05) saturate(1)",
-            "brightness(1) saturate(1)",
-          ],
         }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{
-          duration: 1.7,
+          duration: 1.6,
           times: [0, 0.22, 0.62, 0.86, 1],
           ease: [0.22, 1, 0.36, 1],
         }}
-        style={{ transformOrigin: "center center" }}
-        className="relative"
+        style={{ transformOrigin: "center" }}
+        className="absolute inset-0"
       >
-        {/* 켜질 때 가운데 빛나는 흰색 라인 (라인 펼침 직후 fadeout) */}
+        {/* 본체 — 자식 absolute 요소들이 들어옴 */}
+        <motion.div
+          className="absolute inset-0"
+          animate={
+            flicker
+              ? {
+                  opacity: [1, 0.985, 1, 0.97, 1],
+                }
+              : undefined
+          }
+          transition={
+            flicker
+              ? {
+                  duration: 3.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.8,
+                }
+              : undefined
+          }
+        >
+          {children}
+        </motion.div>
+
+        {/* 켜질 때 가운데 흰색 가로선 (라인 펼침 직후 사라짐) */}
         <motion.span
           aria-hidden
           initial={{ opacity: 0, scaleX: 0 }}
@@ -66,64 +80,33 @@ export function CRTReveal({
           }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
-            duration: 1.7,
-            times: [0, 0.22, 0.5, 0.7, 1],
+            duration: 1.6,
+            times: [0, 0.22, 0.5, 0.72, 1],
             ease: "easeOut",
           }}
           style={{ transformOrigin: "center" }}
           className="pointer-events-none absolute left-0 right-0 top-1/2 z-30 h-[2px] -translate-y-1/2 bg-white shadow-[0_0_28px_8px_oklch(0.99_0.005_280_/_0.85)]"
         />
 
-        {/* 화면 본체 */}
-        <motion.div
-          animate={
-            flicker
-              ? {
-                  opacity: [1, 0.985, 1, 0.97, 1],
-                  filter: [
-                    "brightness(1)",
-                    "brightness(1.02)",
-                    "brightness(1)",
-                    "brightness(0.98)",
-                    "brightness(1)",
-                  ],
-                }
-              : undefined
-          }
-          transition={
-            flicker
-              ? {
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1.8,
-                }
-              : undefined
-          }
-          className="relative"
-        >
-          {children}
-        </motion.div>
-
-        {/* scanlines 오버레이 */}
+        {/* scanlines */}
         {scanlines && (
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 z-20 mix-blend-overlay"
             style={{
               background:
-                "repeating-linear-gradient(0deg, oklch(0 0 0 / 0.28) 0px, oklch(0 0 0 / 0.28) 1px, transparent 1px, transparent 3px)",
+                "repeating-linear-gradient(0deg, oklch(0 0 0 / 0.22) 0px, oklch(0 0 0 / 0.22) 1px, transparent 1px, transparent 3px)",
             }}
           />
         )}
 
-        {/* 비네팅 (모서리 어둠) — 브라운관 곡면 인상 */}
+        {/* 비네팅 */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-10 rounded-[inherit]"
+          className="pointer-events-none absolute inset-0 z-10"
           style={{
             boxShadow:
-              "inset 0 0 80px 10px oklch(0 0 0 / 0.55), inset 0 0 20px oklch(0 0 0 / 0.3)",
+              "inset 0 0 80px 10px oklch(0 0 0 / 0.4), inset 0 0 20px oklch(0 0 0 / 0.2)",
           }}
         />
       </motion.div>

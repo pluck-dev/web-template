@@ -71,7 +71,7 @@ export function Process() {
               </span>
             </h2>
           </div>
-          <p className="text-sm text-muted-foreground sm:max-w-sm sm:text-right">
+          <p className="lead-copy text-[15px] sm:max-w-sm sm:text-right sm:text-[16px]">
             평균 셋업 24시간, 첫 노출까지 7일.
             <br />
             셋팅 후엔 우리가 굴리고 당신은 매출만 봅니다.
@@ -134,10 +134,10 @@ export function Process() {
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-fuchsia-300">
                     step {s.n}
                   </div>
-                  <h3 className="mt-2 font-heading text-xl font-semibold tracking-tight sm:text-2xl lg:text-xl xl:text-2xl">
+                  <h3 className="mt-2 font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl lg:text-xl xl:text-2xl">
                     {s.t}
                   </h3>
-                  <p className="mt-3 text-[13.5px] leading-relaxed text-muted-foreground">
+                  <p className="body-copy mt-3 text-[14px]">
                     {s.d}
                   </p>
                 </motion.div>
@@ -154,7 +154,7 @@ export function Process() {
                 <CharReveal text="당신은 매출만 보세요." />
               </LineReveal>
             </p>
-            <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+            <p className="lead-copy mt-3">
               섹션 사이 우리가 다 합니다 — 큐레이션, 협상, 가이드, 발행, 리포트.
             </p>
           </div>

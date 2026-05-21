@@ -88,10 +88,10 @@ export function Stats() {
                   decimals={s.decimals ?? 0}
                   className="mt-6 block font-heading text-4xl font-bold tracking-tight gradient-text sm:text-5xl"
                 />
-                <div className="mt-2 text-sm font-medium text-foreground">
+                <div className="mt-2 text-[15px] font-semibold text-foreground">
                   {s.l}
                 </div>
-                <div className="mt-1 text-xs text-muted-foreground">
+                <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
                   {s.sub}
                 </div>
               </StaggerItem>

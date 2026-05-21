@@ -47,12 +47,12 @@ export function Cta() {
               <CharReveal text="차례입니다." delay={0.2} />
             </span>
           </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+          <p className="lead-copy mt-7 max-w-md">
             폼을 남겨주시면 영업일 기준 12시간 내 답변드립니다.
             상담은 언제나 무료. 부담 없이 던져보세요.
           </p>
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-10 space-y-3.5">
             {[
               "평균 24시간 셋업",
               "성과 안 나오면 멈추세요 — 위약금 없음",
@@ -60,7 +60,7 @@ export function Cta() {
             ].map((t) => (
               <div key={t} className="flex items-center gap-3">
                 <span className="size-2 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-400 shadow-[0_0_10px_oklch(0.78_0.22_305_/_0.6)]" />
-                <span className="text-sm text-muted-foreground">{t}</span>
+                <span className="text-[15px] text-foreground-soft">{t}</span>
               </div>
             ))}
           </div>
