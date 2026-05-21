@@ -24,7 +24,7 @@ export function Hero() {
       className="relative isolate overflow-hidden noise"
     >
       <FloatingOrbs />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
+      <div aria-hidden className="absolute inset-x-0 top-32 bottom-0 -z-10 bg-grid" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-5 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24">
         {/* 라이브 배지 */}
