@@ -43,9 +43,12 @@ const STATS = [
 export function Stats() {
   return (
     <section id="stats" className="relative overflow-hidden py-24 sm:py-32">
-      {/* 좌측 거대 패럴랙스 텍스트 */}
-      <Parallax speed={-120} className="pointer-events-none absolute -left-12 top-6 -z-10 select-none">
-        <span className="font-heading text-[10rem] font-black leading-none tracking-tight text-white/[0.025] sm:text-[18rem]">
+      {/* 좌측 거대 패럴랙스 텍스트 (모바일에선 숨김 — viewport 침범 방지) */}
+      <Parallax
+        speed={-120}
+        className="pointer-events-none absolute -left-8 top-8 -z-10 hidden select-none sm:-left-12 sm:top-6 sm:block"
+      >
+        <span className="font-heading text-[12rem] font-black leading-none tracking-tight text-white/[0.025] sm:text-[18rem]">
           ROI
         </span>
       </Parallax>

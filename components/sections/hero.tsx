@@ -46,6 +46,7 @@ export function Hero() {
         {/* 거대 타이틀 — Elementor reveal-text 스타일 */}
         <h1 className="mt-6 text-balance font-heading text-[2.6rem] font-bold leading-[1.05] tracking-tight sm:mt-8 sm:text-6xl md:text-7xl lg:text-[5.5rem]">
           <MultiLineReveal
+            eager
             lines={[
               <span key="l1">글로벌 인플루언서를</span>,
               <span key="l2">
@@ -68,12 +69,12 @@ export function Hero() {
           className="lead-copy mt-7 max-w-2xl text-pretty sm:mt-8"
         >
           <span className="block">
-            <LineReveal delay={0.7} sweep={false}>
+            <LineReveal eager delay={0.7} sweep={false}>
               일본 · 태국 · 싱가포르 · 미국 · 중국까지.
             </LineReveal>
           </span>
           <span className="block">
-            <LineReveal delay={0.85} sweep={false}>
+            <LineReveal eager delay={0.85} sweep={false}>
               <span className="text-foreground">13,850명의 진짜 크리에이터</span>
               가 브랜드를 시장에 꽂아드립니다.
             </LineReveal>

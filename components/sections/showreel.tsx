@@ -112,7 +112,7 @@ export function Showreel() {
         {/* 메인 영상 — 16:9 + 패럴랙스 + 브라운관 켜짐 모션 */}
         <motion.div
           style={{ y: heroY, scale: heroScale }}
-          className="glow-border relative isolate w-full"
+          className="relative isolate w-full overflow-hidden rounded-3xl"
         >
           <CRTReveal
             scanlines

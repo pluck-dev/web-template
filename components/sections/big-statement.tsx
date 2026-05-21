@@ -75,7 +75,7 @@ export function BigStatement() {
           y: useTransform(scrollYProgress, [0, 1], [80, -80]),
           opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.1, 0.04]),
         }}
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-heading text-[14rem] font-black leading-none tracking-tighter text-white sm:text-[24rem]"
+        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-heading text-[10rem] font-black leading-none tracking-tighter text-white sm:text-[18rem] md:text-[24rem]"
       >
         α
       </motion.span>

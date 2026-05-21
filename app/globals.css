@@ -120,6 +120,8 @@
   html {
     @apply font-sans;
     color-scheme: dark;
+    /* 가로 overflow 완전 차단 — 거대 패럴랙스 텍스트가 viewport 넘는 것 방지 */
+    overflow-x: clip;
     /* 한국어 친화 letter-spacing 기본값 */
     letter-spacing: -0.005em;
     text-rendering: optimizeLegibility;
@@ -128,6 +130,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: clip;
     /* 한국어 본문은 line-height을 살짝 키워야 답답하지 않음 */
     line-height: 1.65;
     font-feature-settings: "ss01", "ss03";

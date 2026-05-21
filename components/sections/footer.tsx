@@ -25,7 +25,7 @@ export function Footer() {
           {Array.from({ length: 6 }).map((_, i) => (
             <span
               key={i}
-              className="font-heading text-[8rem] font-black leading-none tracking-tighter gradient-text opacity-60 sm:text-[12rem]"
+              className="font-heading text-[4rem] font-black leading-none tracking-tighter gradient-text opacity-60 sm:text-[8rem] md:text-[12rem]"
             >
               ALPHA · REWIRE · GLOBAL ·
             </span>

@@ -9,18 +9,20 @@ type CharRevealProps = {
   delay?: number;
   /** 각 글자가 다양한 방향에서 들어오는 효과 */
   scatter?: boolean;
+  /** 마운트 즉시 발동 (히어로용) */
+  eager?: boolean;
 };
 
 /**
  * CharReveal — 글자 단위 등장.
  * scatter=true면 4방향에서 살짝씩 들어오는 부드러운 비산.
- * 거리/스프링을 완화해 "갑자기"가 아닌 "서서히" 모이는 느낌.
  */
 export function CharReveal({
   text,
   className,
   delay = 0,
   scatter = true,
+  eager = false,
 }: CharRevealProps) {
   const chars = Array.from(text);
 
@@ -28,8 +30,9 @@ export function CharReveal({
     <motion.span
       className={cn("inline-block", className)}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.4 }}
+      {...(eager
+        ? { animate: "show" }
+        : { whileInView: "show", viewport: { once: true, amount: 0.1 } })}
       variants={{
         hidden: {},
         show: {

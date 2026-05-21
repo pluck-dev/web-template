@@ -18,16 +18,16 @@ export function Cta() {
 
   return (
     <section id="contact" className="relative overflow-hidden py-24 sm:py-32">
-      {/* 거대 백그라운드 텍스트 */}
+      {/* 거대 백그라운드 텍스트 (모바일 사이즈 축소) */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center"
+        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
       >
-        <span className="font-heading text-[14rem] font-black leading-none tracking-tighter text-white/[0.03] sm:text-[20rem]">
+        <span className="font-heading text-[7rem] font-black leading-none tracking-tighter text-white/[0.03] sm:text-[14rem] md:text-[20rem]">
           ALPHA
         </span>
       </motion.div>

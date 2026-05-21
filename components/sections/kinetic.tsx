@@ -54,7 +54,7 @@ function Row({
       {items.map((w, i) => (
         <span
           key={`${w}-${i}`}
-          className="mr-8 inline-flex items-center font-heading text-[3.2rem] font-black leading-none tracking-tighter sm:mr-14 sm:text-[6rem] md:text-[9rem]"
+          className="mr-6 inline-flex items-center font-heading text-[2.4rem] font-black leading-none tracking-tighter sm:mr-14 sm:text-[6rem] md:text-[9rem]"
         >
           {variant === "gradient" && (
             <span className="gradient-text">{w}</span>
