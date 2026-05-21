@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { GlitchText } from "@/components/glitch-text";
-import { CharReveal } from "@/components/motion/char-reveal";
 import { LineReveal } from "@/components/motion/line-reveal";
 import { Reveal } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
+import { CRTReveal } from "@/components/motion/crt-reveal";
 import { cn } from "@/lib/utils";
 
 const CLIPS = [
@@ -109,11 +109,16 @@ export function Showreel() {
           </p>
         </Reveal>
 
-        {/* 메인 영상 — 16:9 + 패럴랙스 */}
+        {/* 메인 영상 — 16:9 + 패럴랙스 + 브라운관 켜짐 모션 */}
         <motion.div
           style={{ y: heroY, scale: heroScale }}
-          className="glow-border relative isolate aspect-video w-full overflow-hidden rounded-3xl"
+          className="glow-border relative isolate w-full"
         >
+          <CRTReveal
+            scanlines
+            flicker
+            className="aspect-video w-full overflow-hidden rounded-3xl"
+          >
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay={playing}
@@ -194,6 +199,7 @@ export function Showreel() {
               7일만에 도쿄 점유율 2배 만든 캠페인
             </div>
           </div>
+          </CRTReveal>
         </motion.div>
 
         {/* 클립 캐러셀 (Swiper-like) */}
