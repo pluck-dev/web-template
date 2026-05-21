@@ -134,20 +134,22 @@
     /* 한국어 본문은 line-height을 살짝 키워야 답답하지 않음 */
     line-height: 1.65;
     font-feature-settings: "ss01", "ss03";
+    /* viewport에 고정된 부드러운 오로라 배경 — 섹션과 무관하게 일관적 */
+    background-attachment: fixed;
     background-image:
       radial-gradient(
-        60rem 60rem at 12% -10%,
-        oklch(0.78 0.22 305 / 0.18),
+        70rem 70rem at 10% -5%,
+        oklch(0.78 0.22 305 / 0.16),
         transparent 60%
       ),
       radial-gradient(
-        50rem 50rem at 100% 10%,
-        oklch(0.85 0.18 200 / 0.14),
+        60rem 60rem at 100% 25%,
+        oklch(0.85 0.18 200 / 0.12),
         transparent 55%
       ),
       radial-gradient(
-        40rem 40rem at 50% 110%,
-        oklch(0.78 0.24 340 / 0.14),
+        50rem 50rem at 50% 100%,
+        oklch(0.78 0.24 340 / 0.13),
         transparent 60%
       );
   }

@@ -29,15 +29,6 @@ export function Kinetic() {
       aria-hidden
       className="relative overflow-hidden py-16 sm:py-24"
     >
-      {/* 부드러운 띠 배경 */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, transparent 0%, oklch(0 0 0 / 0.22) 50%, transparent 100%)",
-        }}
-      />
       <div className="space-y-4 sm:space-y-8">
         <Row words={ROW_A} x={xA} variant="gradient" />
         <Row words={ROW_B} x={xB} variant="outline" />

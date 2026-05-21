@@ -16,15 +16,6 @@ const COL_2 = [
 export function Footer() {
   return (
     <footer className="relative pb-10 pt-24">
-      {/* 부드러운 상단 페이드 */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40"
-        style={{
-          background:
-            "linear-gradient(180deg, transparent, oklch(0 0 0 / 0.25))",
-        }}
-      />
       {/* 거대 마퀴 텍스트 */}
       <div className="pointer-events-none overflow-hidden">
         <div
